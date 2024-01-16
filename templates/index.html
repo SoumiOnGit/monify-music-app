@@ -6,6 +6,34 @@
     <title>Simple Music App</title>
 
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffb6c1;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: black; /* Hot Pink color */
+            margin-top: 20px; /* Add some top margin for spacing */
+            font-size: 40px; /* Adjust the font size as needed */
+            font-family: 'Dancing Script', cursive; /* Set the font family to Dancing Script */
+            animation: bounce 2s infinite; /* Apply the 'bounce' animation */
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0); /* Initial and final position */
+            }
+            40% {
+                transform: translateY(-20px); /* Move up */
+            }
+            60% {
+                transform: translateY(-10px); /* Move down slightly */
+            }
+        }
+        
         /* Apply underline style to list items */
         ul li {
             text-decoration: none;
