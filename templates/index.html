@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Music App</title>
+
     <style>
         /* Apply underline style to list items */
         ul li {
@@ -12,31 +12,37 @@
             cursor: pointer;
             color: black; /* Set the default text color */
         }
+
         /* Add underline and change color when hovering */
         ul li:hover {
             text-decoration: underline;
             color: blue; /* Set the hover text color */
         }
+
         /* Style for displaying the currently playing song */
         #currentlyPlaying {
             margin-top: 20px;
             font-weight: bold;
         }
+
         /* Style for the lyrics container */
         #lyricsContainer {
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
         }
+
         /* Style for the container that holds both music files and lyrics */
         #musicContainer {
             display: flex;
             justify-content: space-between;
         }
+
         /* Style for the music files list */
         #musicFiles {
             flex: 1;
         }
+
         /* Style for the lyrics display */
         #lyricsDisplay {
             margin-top: 10px;
@@ -50,63 +56,44 @@
         <source id="audioSource" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
+
     <!-- Container for Music Files and Lyrics -->
     <div id="musicContainer">
         <!-- Music Files -->
         <div id="musicFiles">
             <h2>Music Files</h2>
-
+            
             <div id = "lyrics" style="display:none;">{{lyrics|tojson}}</div>
             <ul>
                 {% for file in music_files %}
-                    <li onclick="playMusic(this)">{{ file }}</li>
                     <!-- to pass lyrics to set_lyrics() function -->
-
+                    
                     <li onclick='playMusic(this)'>{{ file }}</li>
-
-
+                    
+                   
                 {% endfor %}
             </ul>
         </div>
-@@ -75,30 +81,19 @@ <h2>LYRICS</h2>
+
+        <!-- Lyrics Container -->
+        <div id="lyricsContainer">
+            <h2>LYRICS</h2>
             <div id="lyricsDisplay"></div>
         </div>
     </div>
     // to call a function on page load from html 
-
-
+    
+    
 
     <script>
-        var lyrics = [
-            { 'time': 7.02, 'text': 'Wise men say' },
-            { 'time': 13.92, 'text': 'Only fools rush in' },
-            { 'time': 21.17, 'text': "But I can't help falling in love with you" },
-            { 'time': 35.92, 'text': 'Shall I stay?' },
-            { 'time': 42.07, 'text': 'Would it be a sin' },
-            { 'time': 49.82, 'text': "If I can't help falling in love with you?" },
-            { 'time': 64.57, 'text': 'Like a river flows' },
-            { 'time': 68.36, 'text': 'Surely to the sea' },
-            { 'time': 71.76, 'text': 'Darling, so it goes' },
-            { 'time': 75.25, 'text': 'Some things are meant to be' },
-            { 'time': 82.51, 'text': 'Take my hand' },
-            { 'time': 88.75, 'text': 'Take my whole life too' },
-            { 'time': 104.57, 'text': "For I can't help falling in love with you" },
-            { 'time': 111.76, 'text': 'Like a river flows' },
-            { 'time': 115.25, 'text': 'Darling, so it goes' },
-            { 'time': 118.75, 'text': 'Some things are meant to be' },
-            { 'time': 128.64, 'text': 'Take my hand' },
-            { 'time': 134.89, 'text': 'Take my whole life too' },
-            { 'time': 142.04, 'text': "For I can't help falling in love with you" },
-            { 'time': 156.94, 'text': "For I can't help falling in love with you" }
-        ];
         // Lyrics for each song
 
         // to define set_lyrics() function 
-
+        
 
         lyrics = JSON.parse(document.getElementById('lyrics').textContent);
 
-
+       
 
         function playMusic(clickedItem) {
             var audio = document.getElementById('myAudio');
@@ -119,16 +106,20 @@
             audioSource.src = filePath;
             audio.load();
             audio.play();
+
             // Update the currently playing song display
             currentlyPlaying.innerText = "Now Playing: " + clickedItem.textContent;
         }
+
         function resetCurrentlyPlaying() {
             var currentlyPlaying = document.getElementById('currentlyPlaying');
             currentlyPlaying.innerText = "";
         }
+
         function updateLyrics() {
             var audio = document.getElementById('myAudio');
             var lyricsDisplay = document.getElementById('lyricsDisplay');
+
             for (var i = 0; i < lyrics.length; i++) {
                 if (audio.currentTime >= lyrics[i].time && audio.currentTime < (lyrics[i + 1] ? lyrics[i + 1].time : Infinity)) {
                     // Update the lyrics display to show all the lyrics up to the current time
@@ -139,4 +130,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
