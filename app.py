@@ -1,10 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request
 import os
-
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = './static/music'
-
 from datetime import datetime
 
 def srt_to_lyrics(srt_file):
@@ -27,6 +25,7 @@ def srt_to_lyrics(srt_file):
 # Example usage:
 srt_file_path = 'lyrics.srt'
 lyrics_data = srt_to_lyrics(srt_file_path)
+
 
 @app.route('/')
 def index():
